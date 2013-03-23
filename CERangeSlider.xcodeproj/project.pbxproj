@@ -19,6 +19,7 @@
 		72EDE04D16FC46260047B2AA /* CEViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72EDE04C16FC46260047B2AA /* CEViewController.m */; };
 		72EDE05016FC46260047B2AA /* CEViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72EDE04E16FC46260047B2AA /* CEViewController.xib */; };
 		72EDE05E16FC48E50047B2AA /* CERangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 72EDE05D16FC48E50047B2AA /* CERangeSlider.m */; };
+		72EDE06016FD9A980047B2AA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72EDE05F16FD9A980047B2AA /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		72EDE04F16FC46260047B2AA /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/CEViewController.xib; sourceTree = "<group>"; };
 		72EDE05C16FC48E50047B2AA /* CERangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CERangeSlider.h; path = RangeSlider/CERangeSlider.h; sourceTree = "<group>"; };
 		72EDE05D16FC48E50047B2AA /* CERangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CERangeSlider.m; path = RangeSlider/CERangeSlider.m; sourceTree = "<group>"; };
+		72EDE05F16FD9A980047B2AA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72EDE06016FD9A980047B2AA /* QuartzCore.framework in Frameworks */,
 				72EDE03416FC46250047B2AA /* UIKit.framework in Frameworks */,
 				72EDE03616FC46250047B2AA /* Foundation.framework in Frameworks */,
 				72EDE03816FC46250047B2AA /* CoreGraphics.framework in Frameworks */,
@@ -76,6 +79,7 @@
 		72EDE03216FC46250047B2AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				72EDE05F16FD9A980047B2AA /* QuartzCore.framework */,
 				72EDE03316FC46250047B2AA /* UIKit.framework */,
 				72EDE03516FC46250047B2AA /* Foundation.framework */,
 				72EDE03716FC46250047B2AA /* CoreGraphics.framework */,

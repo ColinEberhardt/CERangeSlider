@@ -10,4 +10,12 @@
 
 @interface CERangeSlider : UIControl
 
+@property (nonatomic) float maximumValue;
+
+@property (nonatomic) float minimumValue;
+
+@property (nonatomic) float upperValue;
+
+@property (nonatomic) float lowerValue;
+
 @end
