@@ -18,6 +18,8 @@
     
     float _knobWidth;
     float _useableTrackLength;
+    
+    CGPoint _previousTouchPoint;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -74,6 +76,64 @@
         (_maximumValue - _minimumValue) + (_knobWidth / 2);
 }
 
+- (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    _previousTouchPoint = [touch locationInView:self];
+    
+    // hit test the knob layers
+    if(CGRectContainsPoint(_lowerKnobLayer.frame, _previousTouchPoint))
+    {
+        _lowerKnobLayer.highlighted = YES;
+        [_lowerKnobLayer setNeedsDisplay];
+    }
+    else if(CGRectContainsPoint(_upperKnobLayer.frame, _previousTouchPoint))
+    {
+        _upperKnobLayer.highlighted = YES;
+        [_upperKnobLayer setNeedsDisplay];
+    }
+    return _upperKnobLayer.highlighted || _lowerKnobLayer.highlighted;
+}
+
+#define BOUND(VALUE, UPPER, LOWER)	MIN(MAX(VALUE, LOWER), UPPER)
+
+- (BOOL)continueTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    CGPoint touchPoint = [touch locationInView:self];
+    
+    // deterine by how much the user has dragged
+    float delta = touchPoint.x - _previousTouchPoint.x;
+    float valueDelta = (_maximumValue - _minimumValue) * delta / _useableTrackLength;
+    
+    _previousTouchPoint = touchPoint;
+    
+    // update the values
+    if (_lowerKnobLayer.highlighted)
+    {
+        _lowerValue += valueDelta;
+        _lowerValue = BOUND(_lowerValue, _upperValue, _minimumValue);
+    }
+    if (_upperKnobLayer.highlighted)
+    {
+        _upperValue += valueDelta;
+        _upperValue = BOUND(_upperValue, _maximumValue, _lowerValue);
+    }
+    
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES] ;
+    
+    [self setLayerFrames];
+    
+    [CATransaction commit];
+        
+    return YES;
+}
+
+- (void)endTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    _lowerKnobLayer.highlighted = _upperKnobLayer.highlighted = NO;
+    [_lowerKnobLayer setNeedsDisplay];
+    [_upperKnobLayer setNeedsDisplay];
+}
 
 
 
