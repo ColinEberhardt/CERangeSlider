@@ -9,10 +9,11 @@
 #import "CERangeSlider.h"
 #import <QuartzCore/QuartzCore.h>
 #import "CERangeSliderKnobLayer.h"
+#import "CERangeSliderTrackLayer.h"
 
 @implementation CERangeSlider
 {
-    CALayer* _trackLayer;
+    CERangeSliderTrackLayer* _trackLayer;
     CERangeSliderKnobLayer* _upperKnobLayer;
     CERangeSliderKnobLayer* _lowerKnobLayer;
     
@@ -32,18 +33,16 @@
         _upperValue = 8.0;
         _lowerValue = 2.0;
         
-        _trackLayer = [CALayer layer];
-        _trackLayer.backgroundColor = [UIColor blueColor].CGColor;
+        _trackLayer = [CERangeSliderTrackLayer layer];
+        _trackLayer.slider = self;
         [self.layer addSublayer:_trackLayer];
-        
+
         _upperKnobLayer = [CERangeSliderKnobLayer layer];
         _upperKnobLayer.slider = self;
-        _upperKnobLayer.backgroundColor = [UIColor greenColor].CGColor;
         [self.layer addSublayer:_upperKnobLayer];
 
         _lowerKnobLayer = [CERangeSliderKnobLayer layer];
         _lowerKnobLayer.slider = self;
-        _lowerKnobLayer.backgroundColor = [UIColor greenColor].CGColor;
         [self.layer addSublayer:_lowerKnobLayer];
                                            
         [self setLayerFrames];
