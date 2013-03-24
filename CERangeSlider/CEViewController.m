@@ -29,6 +29,18 @@
     _rangeSlider.backgroundColor = [UIColor redColor];
     
     [self.view addSubview:_rangeSlider];
+    
+    [_rangeSlider addTarget:self
+                     action:@selector(slideValueChanged:)
+           forControlEvents:UIControlEventValueChanged];
+    
 }
+
+- (void)slideValueChanged:(id)control
+{
+    NSLog(@"Slider value changed: (%.2f,%.2f)",
+          _rangeSlider.lowerValue, _rangeSlider.upperValue);
+}
+
 
 @end
