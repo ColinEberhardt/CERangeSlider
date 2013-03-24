@@ -18,4 +18,14 @@
 
 @property (nonatomic) float lowerValue;
 
+@property (nonatomic) float curvatiousness;
+
+@property (nonatomic) UIColor* trackColour;
+
+@property (nonatomic) UIColor* trackHighlightColour;
+
+@property (nonatomic) UIColor* knobColour;
+
+- (float) positionForValue:(float)value;
+
 @end
