@@ -23,6 +23,39 @@
     CGPoint _previousTouchPoint;
 }
 
+#define GENERATE_SETTER(PROPERTY, TYPE, SETTER, UPDATER) \
+@synthesize PROPERTY = _##PROPERTY; \
+\
+- (void)SETTER:(TYPE)PROPERTY { \
+    if (_##PROPERTY != PROPERTY) { \
+        _##PROPERTY = PROPERTY; \
+        [self UPDATER]; \
+    } \
+}
+
+GENERATE_SETTER(trackHighlightColour, UIColor*, setTrackHighlightColour, redrawLayers)
+
+GENERATE_SETTER(trackColour, UIColor*, setTrackColour, redrawLayers)
+
+GENERATE_SETTER(curvatiousness, float, setCurvatiousness, redrawLayers)
+
+GENERATE_SETTER(knobColour, UIColor*, setKnobColour, redrawLayers)
+
+GENERATE_SETTER(maximumValue, float, setMaximumValue, setLayerFrames)
+
+GENERATE_SETTER(minimumValue, float, setMinimumValue, setLayerFrames)
+
+GENERATE_SETTER(lowerValue, float, setLowerValue, setLayerFrames)
+
+GENERATE_SETTER(upperValue, float, setUpperValue, setLayerFrames)
+
+- (void) redrawLayers
+{
+    [_upperKnobLayer setNeedsDisplay];
+    [_lowerKnobLayer setNeedsDisplay];
+    [_trackLayer setNeedsDisplay];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];

@@ -33,12 +33,19 @@
                      action:@selector(slideValueChanged:)
            forControlEvents:UIControlEventValueChanged];
     
+    [self performSelector:@selector(updateState) withObject:nil afterDelay:1.0f];
 }
 
 - (void)slideValueChanged:(id)control
 {
     NSLog(@"Slider value changed: (%.2f,%.2f)",
           _rangeSlider.lowerValue, _rangeSlider.upperValue);
+}
+
+- (void)updateState
+{
+    _rangeSlider.trackHighlightColour = [UIColor redColor];
+    _rangeSlider.curvatiousness = 0.0;
 }
 
 

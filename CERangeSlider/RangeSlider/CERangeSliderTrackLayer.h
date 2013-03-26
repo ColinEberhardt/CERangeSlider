@@ -12,7 +12,6 @@
 
 @interface CERangeSliderTrackLayer : CALayer
 
-@property BOOL highlighted;
 @property CERangeSlider* slider;
 
 @end
